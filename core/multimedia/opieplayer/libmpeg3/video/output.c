@@ -479,10 +479,11 @@ asm(
 	*data++ = 0;
 
 #define STORE_PIXEL_RGB565 \
-	*((unsigned short*)data)++ = \
+	*((unsigned short*)data)/*++*/ = \
 		((CLIP(r_l) & 0xf8) << 8) | \
 		((CLIP(g_l) & 0xfc) << 3) | \
-		((CLIP(b_l) & 0xf8) >> 3);
+		((CLIP(b_l) & 0xf8) >> 3); \
+	data += sizeof(unsigned short);
 
 #define STORE_PIXEL_RGB888 \
 	*data++ = CLIP(r_l); \

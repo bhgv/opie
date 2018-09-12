@@ -554,7 +554,8 @@ const DocLnk *PlayListWidget::current()
                 return d->current;
             }
             else {
-                return &(d->files->selectedDocument());
+                DocLnk dl = d->files->selectedDocument();
+                return &dl; //(d->files->selectedDocument());
             }
         }
         break;

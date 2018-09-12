@@ -127,16 +127,25 @@ void KRFBCanvas::contentsMousePressEvent( QMouseEvent *e )
 {
 
   if (nextDoubleClick) {
-    connection_->buffer()->mouseEvent( &QMouseEvent(QEvent::MouseButtonPress, e->pos(),LeftButton,LeftButton));
-    connection_->buffer()->mouseEvent( &QMouseEvent(QEvent::MouseButtonRelease, e->pos(),LeftButton,0));
-    connection_->buffer()->mouseEvent( &QMouseEvent(QEvent::MouseButtonRelease, e->pos(),LeftButton,0));
-    connection_->buffer()->mouseEvent( &QMouseEvent(QEvent::MouseButtonPress, e->pos(),NoButton,NoButton));
-    connection_->buffer()->mouseEvent( &QMouseEvent(QEvent::MouseButtonRelease, e->pos(),NoButton,0));
+    QMouseEvent evt = QMouseEvent(QEvent::MouseButtonPress, e->pos(),LeftButton,LeftButton);
+    connection_->buffer()->mouseEvent( &evt); //QMouseEvent(QEvent::MouseButtonPress, e->pos(),LeftButton,LeftButton));
+    evt = QMouseEvent(QEvent::MouseButtonRelease, e->pos(),LeftButton,0);
+    connection_->buffer()->mouseEvent( &evt); //QMouseEvent(QEvent::MouseButtonRelease, e->pos(),LeftButton,0));
+    evt = QMouseEvent(QEvent::MouseButtonRelease, e->pos(),LeftButton,0);
+    connection_->buffer()->mouseEvent( &evt); //QMouseEvent(QEvent::MouseButtonRelease, e->pos(),LeftButton,0));
+    evt = QMouseEvent(QEvent::MouseButtonPress, e->pos(),NoButton,NoButton);
+    connection_->buffer()->mouseEvent( &evt); //QMouseEvent(QEvent::MouseButtonPress, e->pos(),NoButton,NoButton));
+    evt = QMouseEvent(QEvent::MouseButtonRelease, e->pos(),NoButton,0);
+    connection_->buffer()->mouseEvent( &evt); //QMouseEvent(QEvent::MouseButtonRelease, e->pos(),NoButton,0));
   } if (nextRightClick) {
-    connection_->buffer()->mouseEvent( &QMouseEvent(QEvent::MouseButtonPress, e->pos(),RightButton,RightButton));
-    connection_->buffer()->mouseEvent( &QMouseEvent(QEvent::MouseButtonRelease, e->pos(),RightButton,0));
-    connection_->buffer()->mouseEvent( &QMouseEvent(QEvent::MouseButtonPress, e->pos(),NoButton,NoButton));
-    connection_->buffer()->mouseEvent( &QMouseEvent(QEvent::MouseButtonRelease, e->pos(),NoButton,0));
+    QMouseEvent evt = QMouseEvent(QEvent::MouseButtonPress, e->pos(),RightButton,RightButton);
+    connection_->buffer()->mouseEvent( &evt); //QMouseEvent(QEvent::MouseButtonPress, e->pos(),RightButton,RightButton));
+    evt = QMouseEvent(QEvent::MouseButtonRelease, e->pos(),RightButton,0);
+    connection_->buffer()->mouseEvent( &evt); //QMouseEvent(QEvent::MouseButtonRelease, e->pos(),RightButton,0));
+    evt = QMouseEvent(QEvent::MouseButtonPress, e->pos(),NoButton,NoButton);
+    connection_->buffer()->mouseEvent( &evt); //QMouseEvent(QEvent::MouseButtonPress, e->pos(),NoButton,NoButton));
+    evt = QMouseEvent(QEvent::MouseButtonRelease, e->pos(),NoButton,0);
+    connection_->buffer()->mouseEvent( &evt); //QMouseEvent(QEvent::MouseButtonRelease, e->pos(),NoButton,0));
   } else if ( loggedIn_ )
     connection_->buffer()->mouseEvent( e );
 
@@ -186,12 +195,18 @@ void KRFBCanvas::sendCtlAltDel( void)
 {
 
   if ( loggedIn_ ) {
-    connection_->buffer()->keyPressEvent( &QKeyEvent(QEvent::KeyPress,Qt::Key_Control, 0,0));
-    connection_->buffer()->keyPressEvent( &QKeyEvent(QEvent::KeyPress,Qt::Key_Alt, 0,0));
-		connection_->buffer()->keyPressEvent( &QKeyEvent(QEvent::KeyPress,Qt::Key_Delete, 0,0));
-		connection_->buffer()->keyPressEvent( &QKeyEvent(QEvent::KeyRelease,Qt::Key_Control, 0,0));
-		connection_->buffer()->keyPressEvent( &QKeyEvent(QEvent::KeyRelease,Qt::Key_Alt, 0,0));
-    connection_->buffer()->keyPressEvent( &QKeyEvent(QEvent::KeyRelease,Qt::Key_Delete, 0,0));
+    QKeyEvent evt = QKeyEvent(QEvent::KeyPress,Qt::Key_Control, 0,0);
+    connection_->buffer()->keyPressEvent( &evt); //QKeyEvent(QEvent::KeyPress,Qt::Key_Control, 0,0));
+    evt = QKeyEvent(QEvent::KeyPress,Qt::Key_Alt, 0,0);
+    connection_->buffer()->keyPressEvent( &evt); //QKeyEvent(QEvent::KeyPress,Qt::Key_Alt, 0,0));
+    evt = QKeyEvent(QEvent::KeyPress,Qt::Key_Delete, 0,0);
+		connection_->buffer()->keyPressEvent( &evt); //QKeyEvent(QEvent::KeyPress,Qt::Key_Delete, 0,0));
+    evt = QKeyEvent(QEvent::KeyRelease,Qt::Key_Control, 0,0);
+		connection_->buffer()->keyPressEvent( &evt); //QKeyEvent(QEvent::KeyRelease,Qt::Key_Control, 0,0));
+    evt = QKeyEvent(QEvent::KeyRelease,Qt::Key_Alt, 0,0);
+		connection_->buffer()->keyPressEvent( &evt); //QKeyEvent(QEvent::KeyRelease,Qt::Key_Alt, 0,0));
+    evt = QKeyEvent(QEvent::KeyRelease,Qt::Key_Delete, 0,0);
+    connection_->buffer()->keyPressEvent( &evt); //QKeyEvent(QEvent::KeyRelease,Qt::Key_Delete, 0,0));
 	}
 }
 

@@ -1,5 +1,5 @@
 HOST_EXTRACFLAGS := -DLOCALE 
-HOST_LOADLIBES   := -lncurses
+HOST_LOADLIBES   := -L/usr/lib/i386-linux-gnu -lncurses
 HOSTCC = $(CCACHE) gcc
 
 ifeq (/usr/include/ncurses/ncurses.h, $(wildcard /usr/include/ncurses/ncurses.h))
@@ -53,4 +53,4 @@ clean:
 	$(HOSTCC) $(HOST_EXTRACFLAGS) -fPIC -c $^ -o $@
 
 lxdialog: $(lxdialog-objs)
-	$(HOSTCC) $(HOST_EXTRACFLAGS) $(HOST_LOADLIBES) $^ -o $@
+	$(HOSTCC) $(HOST_EXTRACFLAGS) $^ $(HOST_LOADLIBES) -o $@
